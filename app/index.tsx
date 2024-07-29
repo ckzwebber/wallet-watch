@@ -26,7 +26,7 @@ const App = () => {
 
   const fetchCurrencyData = async () => {
     try {
-      const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL');
+      const response = await fetch('https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL,GBP-BRL,JPY-BRL,AUD-BRL,CAD-BRL,CHF-BRL,CNY-BRL,INR-BRL,NZD-BRL,SEK-BRL,SGD-BRL');
       const data = await response.json();
       setCurrencyData(data);
       setRefreshing(false);
@@ -36,32 +36,25 @@ const App = () => {
     }
   };
 
-  const onRefresh = () => {
+  const onRefresh = async () => {
     setRefreshing(true);
-    fetchCurrencyData();
+    await fetchCurrencyData();
+  };
+
+  const formatCurrency = (value: string) => {
+    return parseFloat(value).toFixed(2).replace('.', ',');
   };
 
   const renderCurrencyItem = ({ item }: { item: CurrencyData }) => {
-
     item.name = item.name.replace("/Real Brasileiro", "");
-
-    item.high = parseFloat(item.high).toFixed(2);
-    item.low = parseFloat(item.low).toFixed(2);
-    item.bid = parseFloat(item.bid).toFixed(2);
-    item.ask = parseFloat(item.ask).toFixed(2);
-
-    item.high = item.high.replace(".", ",");
-    item.low = item.low.replace(".", ",");
-    item.bid = item.bid.replace(".", ",");
-    item.ask = item.ask.replace(".", ",");
 
     return (
       <View style={styles.item}>
-        <Text style={styles.name}>{item.name}</Text>
-        <Text>Alta: <Text style={styles.alta}>R${item.high}</Text></Text>
-        <Text>Baixa: <Text style={styles.baixa}>R${item.low}</Text></Text>
-        <Text>Compra: <Text style={styles.price}>R${item.bid}</Text></Text>
-        <Text>Venda: <Text style={styles.price}>R${item.ask}</Text></Text>
+        <Text style={styles.name}>{item.name} R${formatCurrency(item.bid)}</Text>
+        <Text>Alta: <Text style={styles.alta}>R${formatCurrency(item.high)}</Text></Text>
+        <Text>Baixa: <Text style={styles.baixa}>R${formatCurrency(item.low)}</Text></Text>
+        <Text>Compra: <Text style={styles.price}>R${formatCurrency(item.bid)}</Text></Text>
+        <Text>Venda: <Text style={styles.price}>R${formatCurrency(item.ask)}</Text></Text>
       </View>
     );
   };
@@ -71,6 +64,7 @@ const App = () => {
       {currencyData ? (
         <FlatList style={{ width: '90%' }}
           ListHeaderComponent={<Text style={styles.title}>Cotação BRL</Text>}
+          showsVerticalScrollIndicator={false}
           data={Object.values(currencyData)}
           renderItem={renderCurrencyItem}
           keyExtractor={(item) => item.code}
@@ -95,8 +89,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#F5F7FA',
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    paddingHorizontal: 15,
     width: '100%',
+    height: '100%',
+    margin: 0,
   },
 
   title: {
@@ -118,6 +114,7 @@ const styles = StyleSheet.create({
     color: "#000000",
     fontSize: 18,
     fontWeight: 'bold',
+    marginBottom: 10,
   },
 
   alta: {
