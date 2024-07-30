@@ -2,8 +2,6 @@
 
 Seja bem-vindo! Este é o código-fonte do WalletWatch, um aplicativo mobile desenvolvido para acompanhar as cotações de moedas de forma simples e eficiente. Com ele, você pode visualizar o valor de várias moedas em relação ao Real Brasileiro (BRL).
 
---
-
 ## Visão Geral
 
 WalletWatch é desenvolvido usando **React Native** com **Expo** e **TypeScript**. Ele permite que os usuários acompanhem em tempo real a variação de preços de diversas moedas em relação ao BRL, incluindo valores de alta, baixa, compra e venda.
