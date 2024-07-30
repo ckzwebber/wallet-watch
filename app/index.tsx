@@ -88,7 +88,9 @@ const App = () => {
     item.name = item.name.replace("/Real Brasileiro", "");
 
     // Obter a imagem da bandeira com base no código da moeda
-    const flag = (flagImages as any)[item.code] || undefined;
+    const flag = (flagImages as Record<string, CurrencyDataRecord | undefined>)[
+      item.code
+    ];
 
     return (
       <View style={styles.item}>
