@@ -125,9 +125,12 @@ const App = () => {
         <FlatList
           style={{ width: "90%" }}
           ListHeaderComponent={
-            <Text style={styles.title}>
-              Cotação BRL <Image source={BRflag} />
-            </Text>
+            <View>
+              <Text style={styles.title}>
+                Cotação BRL <Image source={BRflag} />
+              </Text>
+              <Text style={styles.subtitle}>Nas últimas 24 horas:</Text>
+            </View>
           }
           showsVerticalScrollIndicator={false}
           data={Object.values(currencyData)}
@@ -205,6 +208,12 @@ const styles = StyleSheet.create({
     color: "#0F67B1",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  subtitle: {
+    fontSize: 16,
+    margin: "auto",
+    marginBottom: 20,
+    color: "#000000",
   },
 });
 
