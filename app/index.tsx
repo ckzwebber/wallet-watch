@@ -96,7 +96,8 @@ const App = () => {
       <View style={styles.item}>
         <View style={styles.row}>
           <Text style={styles.name}>
-            {item.name} R${formatCurrency(item.bid)}
+            {item.name}
+            <Text style={styles.mainprice}> R${formatCurrency(item.bid)}</Text>
           </Text>
           {flag && <Image source={flag} style={styles.flag} />}
         </View>
@@ -192,12 +193,17 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   baixa: {
-    color: "#41D4A8",
+    color: "#059212",
     fontSize: 16,
     fontWeight: "bold",
   },
   price: {
     fontSize: 16,
+    fontWeight: "bold",
+  },
+  mainprice: {
+    color: "#0F67B1",
+    fontSize: 18,
     fontWeight: "bold",
   },
 });
