@@ -1,6 +1,30 @@
-# Welcome to your Expo app 👋
+### WalletWatch - Currency Tracking App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Seja bem-vindo! Este é o código-fonte do WalletWatch, um aplicativo mobile desenvolvido para acompanhar as cotações de moedas de forma simples e eficiente. Com ele, você pode visualizar o valor de várias moedas em relação ao Real Brasileiro (BRL).
+
+---
+
+### Visão Geral
+
+WalletWatch é desenvolvido usando **React Native** com **Expo** e **TypeScript**. Ele permite que os usuários acompanhem em tempo real a variação de preços de diversas moedas em relação ao BRL, incluindo valores de alta, baixa, compra e venda.
+
+### Conteúdo
+
+- **📱 Tecnologias:** React Native, Expo, TypeScript
+- **💰 Moedas Suportadas:** Dólar Americano (USD), Euro (EUR), Bitcoin (BTC), Libra Esterlina (GBP), Iene Japonês (JPY), Dólar Australiano (AUD), Dólar Canadense (CAD), Franco Suíço (CHF), Yuan Chinês (CNY), Rupia Indiana (INR), Dólar Neozelandês (NZD), Coroa Sueca (SEK), Dólar de Singapura (SGD)
+- **🌐 API Utilizada:** AwesomeAPI - API de Cotações
+
+### Agradecimentos
+
+Agradeço à **AwesomeAPI** por fornecer os dados das cotações de moedas em tempo real. Apenas com ela esse projeto tornou-se possível.
+
+### Contribuições
+
+Sinta-se à vontade para dar uma olha no código, enviar pull requests ou abrir issues. Seu feedback é muito bem-vindo!
+
+### Contato
+
+Fique a vontade para entrar em contato comigo pelo meu <a href="https://www.linkedin.com/in/cmiguelwm/" target="_blank">LinkedIn</a>, até mais! 👋
 
 ## Get started
 
@@ -15,25 +39,6 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
    ```bash
     npx expo start
    ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
 
 ## Learn more
 
