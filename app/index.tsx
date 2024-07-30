@@ -5,10 +5,10 @@ import {
   FlatList,
   RefreshControl,
   Image,
+  ActivityIndicator,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-// Definindo o tipo CurrencyData
 type CurrencyData = {
   code: string;
   codein: string;
@@ -23,18 +23,15 @@ type CurrencyData = {
   create_date: string;
 };
 
-// Definindo o tipo de objeto CurrencyDataRecord como um registro de moedas
 type CurrencyDataRecord = Record<string, CurrencyData>;
 
 const App = () => {
-  // Estado para armazenar dados das moedas
   const [currencyData, setCurrencyData] = useState<CurrencyDataRecord | null>(
     null
   );
-  // Estado para controlar o estado de "refreshing" da lista
+
   const [refreshing, setRefreshing] = useState(false);
 
-  // Mapeamento de códigos de moedas para imagens de bandeiras
   const flagImages = {
     USD: require("../assets/images/flags/USD.png"),
     EUR: require("../assets/images/flags/EUR.png"),
@@ -51,7 +48,6 @@ const App = () => {
     SGD: require("../assets/images/flags/SGD.png"),
   };
 
-  // Função para buscar dados das moedas da API
   const fetchCurrencyData = async () => {
     try {
       const response = await fetch(
@@ -66,28 +62,22 @@ const App = () => {
     }
   };
 
-  // Efeito para carregar os dados quando o componente é montado
   useEffect(() => {
     fetchCurrencyData();
   }, []);
 
-  // Função para formatar números de moeda para duas casas decimais
   const formatCurrency = (value: string) => {
     return parseFloat(value).toFixed(2).replace(".", ",");
   };
 
-  // Função para atualizar a lista quando o usuário faz o "pull-to-refresh"
   const onRefresh = async () => {
     setRefreshing(true);
     await fetchCurrencyData();
   };
 
-  // Função para renderizar cada item da lista de moedas
   const renderCurrencyItem = ({ item }: { item: CurrencyData }) => {
-    // Remover "/Real Brasileiro" do nome da moeda para apresentação
     item.name = item.name.replace("/Real Brasileiro", "");
 
-    // Obter a imagem da bandeira com base no código da moeda
     const flag = (flagImages as Record<string, CurrencyDataRecord | undefined>)[
       item.code
     ];
@@ -102,10 +92,10 @@ const App = () => {
           {flag && <Image source={flag} style={styles.flag} />}
         </View>
         <Text>
-          Alta: <Text style={styles.alta}>R${formatCurrency(item.high)}</Text>
+          Alta: <Text style={styles.high}>R${formatCurrency(item.high)}</Text>
         </Text>
         <Text>
-          Baixa: <Text style={styles.baixa}>R${formatCurrency(item.low)}</Text>
+          Baixa: <Text style={styles.low}>R${formatCurrency(item.low)}</Text>
         </Text>
         <Text>
           Compra: <Text style={styles.price}>R${formatCurrency(item.bid)}</Text>
@@ -126,11 +116,6 @@ const App = () => {
           style={{ width: "90%" }}
           ListHeaderComponent={
             <View>
-              <SearchBar
-                placeholder="Type Here..."
-                onChangeText={undefined}
-                value={undefined}
-              />
               <Text style={styles.title}>
                 Cotação BRL <Image source={BRflag} />
               </Text>
@@ -150,7 +135,7 @@ const App = () => {
           }
         />
       ) : (
-        <Text>Carregando...</Text>
+        <ActivityIndicator size="large" color="#000000" />
       )}
     </View>
   );
@@ -195,12 +180,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  alta: {
+  high: {
     color: "#FF4B4A",
     fontSize: 16,
     fontWeight: "bold",
   },
-  baixa: {
+  low: {
     color: "#059212",
     fontSize: 16,
     fontWeight: "bold",
