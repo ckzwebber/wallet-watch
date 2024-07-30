@@ -126,6 +126,11 @@ const App = () => {
           style={{ width: "90%" }}
           ListHeaderComponent={
             <View>
+              <SearchBar
+                placeholder="Type Here..."
+                onChangeText={undefined}
+                value={undefined}
+              />
               <Text style={styles.title}>
                 Cotação BRL <Image source={BRflag} />
               </Text>
